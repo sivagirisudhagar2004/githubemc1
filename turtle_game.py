@@ -1,3 +1,8 @@
+import turtle
+
+width, height = 500, 500
+
+
 def get_number_of_racers():
     racers = 0
     while True:
@@ -11,3 +16,12 @@ def get_number_of_racers():
                 return racers
         else:
                 print("Number not in range 2-10.Try Again!")
+
+def init_turtle():
+        screen = turtle.Screen()
+        screen.setup(width, height)
+        screen.title("Turtle Racing!")
+
+racers = get_number_of_racers()
+init_turtle()
+
