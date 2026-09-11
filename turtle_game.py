@@ -5,8 +5,6 @@ import random
 width, height = 500, 500
 COLORS = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown", "gray", "cyan"]
 
-
-
 def get_number_of_racers():
     racers = 0
     while True:
@@ -32,7 +30,7 @@ def race(colors):
 
                 x,y = racers.pos()
                 if (y >= height//2 - 10):
-                      return colors[turtles.index(turtle)]
+                      return colors[turtles.index(racers)]
                 
 
 def create_turtle(colors):
@@ -57,9 +55,12 @@ def init_turtle():
 
 racers = get_number_of_racers()
 init_turtle()
+
 random.shuffle(COLORS)
 colors = COLORS[:racers]
-create_turtle(colors)
 
-race(colors)
+
+winner = race(colors)
+print("The Winner is the turtle with color:",winner)
+time.sleep(5)
 
