@@ -9,3 +9,27 @@ for _ in range(t):
     
     t1_part = t1_str.rsplit(' ',1)
     t2_part = t2_str.rsplit(' ',1)
+
+    t1 = datetime.strptime(t1_part[0],fmt)
+    t2 = datetime.strptime(t2_part[0],fmt)
+
+    def parse_timezone(tz_str):
+        sign = 1 if tz_str[0] == '+' else -1
+        tz_str= tz_str[1:]
+        if ':'in tz_str:
+            hours,minutes = map(int,tz_str.split(':'))
+        else:
+            hours = int(tz_str[:2])
+            minutes = int(tz_str[2:])
+        return sign * (hours*3600 + minutes*60)
+    
+    tz1_offset = parse_timezone(t1_part[1])
+    tz2_offset = parse_timezone(t2_part[1])
+    
+    t1_seconds = t1.timestamp()- tz1_offset
+    t2_seconds = t2.timestamp() - tz2_offset
+     
+    diff = abs(t1_seconds - t2_seconds)
+    
+    print(int(diff))
+        
